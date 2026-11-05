@@ -791,3 +791,274 @@ body {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* ========================================
+   MODAL FORM
+======================================== */
+
+.krathong-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.krathong-modal fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.krathong-modal legend {
+    margin-bottom: 14px;
+    color: #44352f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ========================================
+   COLOR OPTIONS
+======================================== */
+
+.color-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+}
+
+.color-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 0;
+    padding: 12px 8px;
+
+    border: 2px solid #eadfd4;
+    border-radius: 16px;
+
+    background: #ffffff;
+    color: #44352f;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.color-option img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.color-option:hover {
+    border-color: #d6b77b;
+    transform: translateY(-2px);
+}
+
+.color-option.selected {
+    border-color: #d6a442;
+    background: #fff5dd;
+    box-shadow: 0 0 0 2px #f3d99c55;
+}
+
+/* ชื่อสี */
+
+.color-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.color-name i {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    border: 1px solid #00000015;
+}
+
+/* ========================================
+   WISH INPUT
+======================================== */
+
+.krathong-modal label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #44352f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.krathong-modal label span {
+    color: #a89b8e;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.krathong-modal textarea {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+
+    resize: vertical;
+
+    padding: 12px 14px;
+
+    border: 1px solid #e5d8cb;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #44352f;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.krathong-modal textarea:focus {
+    border-color: #d6a442;
+    box-shadow: 0 0 0 3px #d6a44225;
+}
+
+.krathong-modal textarea::placeholder {
+    color: #b9aca0;
+}
+
+/* ========================================
+   FLOAT BUTTON
+======================================== */
+
+.float-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    min-height: 52px;
+
+    margin-top: 8px;
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #df9c38, #f4c660);
+    color: #3b2411;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px #dba84435,
+        inset 0 1px 0 #ffffff80;
+
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.float-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px #dba84455,
+        inset 0 1px 0 #ffffff80;
+}
+
+.float-button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.float-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
+.close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1e8df;
+    color: #6b5546;
+
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #e6d8ca;
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+    .color-options {
+        gap: 10px;
+    }
+
+    .color-option {
+        padding: 10px 6px;
+    }
+
+    .color-option img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .krathong-modal form {
+        gap: 14px;
+    }
+}
+
+.krathong-modal .modal-kicker {
+    margin: 0 0 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #b58a68;
+    letter-spacing: 2px;
+}
+
+.krathong-modal .modal-title {
+    display: block;
+    width: 100%;
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #44352f;
+}
