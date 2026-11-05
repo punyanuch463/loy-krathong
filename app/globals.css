@@ -19,13 +19,28 @@ body {
     font-family: Arial, Tahoma, sans-serif;
 }
 
+/* ========================================
+   NIGHT SCENE
+======================================== */
+
 .night-scene {
     position: relative;
     isolation: isolate;
     min-height: 100svh;
     overflow: hidden;
-    background: radial-gradient(ellipse 42% 32% at 73% 18%, #4d4779 0%, transparent 70%), linear-gradient(#08152f 0%, #10264c 45%, #183d5d 63%, #071b36 100%);
+    background:
+        radial-gradient(ellipse 42% 32% at 73% 18%,
+            #4d4779 0%,
+            transparent 70%),
+        linear-gradient(#08152f 0%,
+            #10264c 45%,
+            #183d5d 63%,
+            #071b36 100%);
 }
+
+/* ========================================
+   STARS
+======================================== */
 
 .stars {
     position: absolute;
@@ -41,6 +56,10 @@ body {
     animation: twinkle 3.5s ease-in-out infinite;
 }
 
+/* ========================================
+   MOON
+======================================== */
+
 .moon {
     position: absolute;
     top: clamp(50px, 9vw, 108px);
@@ -48,8 +67,13 @@ body {
     width: clamp(112px, 14vw, 176px);
     aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 32%, #fffde4 0 10%, #f7edbf 53%, #e2ce90 100%);
-    box-shadow: 0 0 24px 5px #fff0b0aa, 0 0 100px 28px #d7b97544;
+    background: radial-gradient(circle at 35% 32%,
+            #fffde4 0 10%,
+            #f7edbf 53%,
+            #e2ce90 100%);
+    box-shadow:
+        0 0 24px 5px #fff0b0aa,
+        0 0 100px 28px #d7b97544;
     animation: moon-breathe 6s ease-in-out infinite;
 }
 
@@ -81,6 +105,10 @@ body {
     right: 34%;
 }
 
+/* ========================================
+   DISTANT HILLS
+======================================== */
+
 .distant-hills {
     position: absolute;
     left: -10%;
@@ -92,15 +120,36 @@ body {
 .hill-back {
     bottom: 31%;
     background: #10294a;
-    clip-path: polygon(0 100%, 0 74%, 12% 56%, 23% 72%, 41% 31%, 55% 62%, 72% 39%, 84% 65%, 100% 35%, 100% 100%);
+    clip-path: polygon(0 100%,
+            0 74%,
+            12% 56%,
+            23% 72%,
+            41% 31%,
+            55% 62%,
+            72% 39%,
+            84% 65%,
+            100% 35%,
+            100% 100%);
 }
 
 .hill-front {
     bottom: 24%;
     background: #0c2744;
-    opacity: .95;
-    clip-path: polygon(0 100%, 0 62%, 19% 38%, 33% 69%, 50% 44%, 64% 65%, 80% 32%, 100% 58%, 100% 100%);
+    opacity: 0.95;
+    clip-path: polygon(0 100%,
+            0 62%,
+            19% 38%,
+            33% 69%,
+            50% 44%,
+            64% 65%,
+            80% 32%,
+            100% 58%,
+            100% 100%);
 }
+
+/* ========================================
+   HERO
+======================================== */
 
 .hero {
     position: relative;
@@ -119,7 +168,7 @@ body {
     color: #f3d785;
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: .16em;
+    letter-spacing: 0.16em;
 }
 
 .hero h1 {
@@ -128,8 +177,8 @@ body {
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(45px, 7vw, 82px);
     font-weight: 400;
-    line-height: .98;
-    letter-spacing: -.045em;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
     text-shadow: 0 4px 32px #0008;
 }
 
@@ -145,6 +194,10 @@ body {
     line-height: 1.8;
 }
 
+/* ========================================
+   CREATE BUTTON
+======================================== */
+
 .create-button {
     display: inline-flex;
     align-items: center;
@@ -158,14 +211,22 @@ body {
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 8px 25px #0005, inset 0 1px #fff7;
-    transition: transform .2s, box-shadow .2s;
+    box-shadow:
+        0 8px 25px #0005,
+        inset 0 1px #fff7;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .create-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 13px 30px #0007, 0 0 20px #f7c45277;
+    box-shadow:
+        0 13px 30px #0007,
+        0 0 20px #f7c45277;
 }
+
+/* ========================================
+   RIVER
+======================================== */
 
 .river {
     position: absolute;
@@ -175,8 +236,13 @@ body {
     height: 33%;
     min-height: 235px;
     overflow: hidden;
-    background: linear-gradient(180deg, #245270dd, #0b3154 48%, #061d3b);
+    background: linear-gradient(180deg,
+            #245270dd,
+            #0b3154 48%,
+            #061d3b);
 }
+
+/* Moon reflection */
 
 .moon-reflection {
     position: absolute;
@@ -185,11 +251,31 @@ body {
     width: 18%;
     height: 105%;
     transform: translateX(-50%);
-    opacity: .7;
-    background: linear-gradient(90deg, transparent, #fff6bb44 35%, #fffde999 50%, #fff6bb44 65%, transparent);
-    clip-path: polygon(43% 0, 57% 0, 65% 10%, 35% 17%, 67% 24%, 33% 31%, 62% 39%, 39% 47%, 66% 55%, 32% 63%, 57% 73%, 37% 84%, 55% 100%, 45% 100%);
+    opacity: 0.7;
+    background: linear-gradient(90deg,
+            transparent,
+            #fff6bb44 35%,
+            #fffde999 50%,
+            #fff6bb44 65%,
+            transparent);
+    clip-path: polygon(43% 0,
+            57% 0,
+            65% 10%,
+            35% 17%,
+            67% 24%,
+            33% 31%,
+            62% 39%,
+            39% 47%,
+            66% 55%,
+            32% 63%,
+            57% 73%,
+            37% 84%,
+            55% 100%,
+            45% 100%);
     animation: shimmer 5s ease-in-out infinite;
 }
+
+/* River glow */
 
 .river-glow {
     position: absolute;
@@ -212,6 +298,8 @@ body {
     animation-delay: -2s;
 }
 
+/* Waves */
+
 .wave {
     position: absolute;
     right: -10%;
@@ -229,14 +317,18 @@ body {
 .wave-two {
     top: 40%;
     animation-delay: -3s;
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .wave-three {
     top: 74%;
     animation-delay: -5s;
-    opacity: .45;
+    opacity: 0.45;
 }
+
+/* ========================================
+   EMPTY RIVER
+======================================== */
 
 .empty-river-message {
     position: absolute;
@@ -260,117 +352,9 @@ body {
     margin: 0;
 }
 
-.scroll-hint {
-    position: absolute;
-    z-index: 2;
-    right: 28px;
-    bottom: 28px;
-    margin: 0;
-    color: #c8d8dfb0;
-    font-size: 11px;
-    writing-mode: vertical-rl;
-    letter-spacing: .06em;
-}
-
-.scroll-hint span {
-    margin-top: 8px;
-    color: #f3d273;
-    font-size: 16px;
-    animation: bob 1.8s ease-in-out infinite;
-}
-
-.river {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 33%;
-    min-height: 235px;
-    overflow: hidden;
-    background: linear-gradient(180deg, #245270dd, #0b3154 48%, #061d3b);
-}
-
-.moon-reflection {
-    position: absolute;
-    top: -3%;
-    left: 50%;
-    width: 18%;
-    height: 105%;
-    transform: translateX(-50%);
-    opacity: .7;
-    background: linear-gradient(90deg, transparent, #fff6bb44 35%, #fffde999 50%, #fff6bb44 65%, transparent);
-    clip-path: polygon(43% 0, 57% 0, 65% 10%, 35% 17%, 67% 24%, 33% 31%, 62% 39%, 39% 47%, 66% 55%, 32% 63%, 57% 73%, 37% 84%, 55% 100%, 45% 100%);
-    animation: shimmer 5s ease-in-out infinite;
-}
-
-.river-glow {
-    position: absolute;
-    height: 3px;
-    border-radius: 50%;
-    background: #f8db8670;
-    animation: ripple 4s ease-in-out infinite;
-}
-
-.glow-one {
-    top: 38%;
-    left: 10%;
-    width: 30%;
-}
-
-.glow-two {
-    top: 70%;
-    right: 9%;
-    width: 24%;
-    animation-delay: -2s;
-}
-
-.wave {
-    position: absolute;
-    right: -10%;
-    left: -10%;
-    height: 80px;
-    border-top: 2px solid #81b9d42e;
-    border-radius: 50%;
-    animation: drift 9s linear infinite;
-}
-
-.wave-one {
-    top: 10%;
-}
-
-.wave-two {
-    top: 40%;
-    animation-delay: -3s;
-    opacity: .7;
-}
-
-.wave-three {
-    top: 74%;
-    animation-delay: -5s;
-    opacity: .45;
-}
-
-.empty-river-message {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transform: translate(-50%, -50%);
-    color: #c7e1e9b8;
-    font-size: 13px;
-    white-space: nowrap;
-}
-
-.empty-river-message span {
-    color: #f4cf72;
-    animation: twinkle 2s infinite;
-}
-
-.empty-river-message p {
-    margin: 0;
-}
+/* ========================================
+   SCROLL HINT
+======================================== */
 
 .scroll-hint {
     position: absolute;
@@ -381,7 +365,7 @@ body {
     color: #c8d8dfb0;
     font-size: 11px;
     writing-mode: vertical-rl;
-    letter-spacing: .06em;
+    letter-spacing: 0.06em;
 }
 
 .scroll-hint span {
@@ -390,9 +374,14 @@ body {
     font-size: 16px;
     animation: bob 1.8s ease-in-out infinite;
 }
+
+/* ========================================
+   KRATHONG
+======================================== */
 
 .floating-krathong {
     --krathong-color: #e5a934;
+
     position: absolute;
     width: 62px;
     height: 56px;
@@ -410,7 +399,9 @@ body {
     border: 2px solid #ffd979;
     border-radius: 50% 50% 42% 42%;
     background: linear-gradient(160deg, #7b4b22, #331d15);
-    box-shadow: inset 0 4px var(--krathong-color), 0 4px 5px #00142c88;
+    box-shadow:
+        inset 0 4px var(--krathong-color),
+        0 4px 5px #00142c88;
 }
 
 .petal {
@@ -448,6 +439,10 @@ body {
     animation: flame 1.2s ease-in-out infinite alternate;
 }
 
+/* ========================================
+   FLOATING KRATHONG FROM FIREBASE
+======================================== */
+
 .krathong-position {
     position: absolute;
     z-index: 3;
@@ -463,6 +458,8 @@ body {
     object-fit: contain;
     filter: drop-shadow(0 8px 6px #00132699);
 }
+
+/* Wish tooltip */
 
 .wish-tooltip {
     position: absolute;
@@ -480,7 +477,7 @@ body {
     line-height: 1.35;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .18s, transform .18s;
+    transition: opacity 0.18s, transform 0.18s;
 }
 
 .wish-tooltip::after {
@@ -500,6 +497,8 @@ body {
     opacity: 1;
 }
 
+/* Firebase error */
+
 .firebase-notice {
     position: absolute;
     z-index: 5;
@@ -512,7 +511,10 @@ body {
     white-space: nowrap;
 }
 
-/* พื้นหลัง Modal */
+/* ========================================
+   MODAL BACKDROP
+======================================== */
+
 .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -525,24 +527,36 @@ body {
     padding: 16px;
 
     background: rgba(10, 12, 30, 0.72);
+
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 
+    /* เลื่อนพื้นหลังได้ถ้า Modal สูงเกินหน้าจอ */
     overflow-y: auto;
     overscroll-behavior: contain;
+
+    /* รองรับการเลื่อนบน iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
-/* ตัว Modal */
+/* ========================================
+   MODAL
+======================================== */
+
 .krathong-modal {
     position: relative;
 
     width: 100%;
     max-width: 440px;
 
+    /* ไม่ให้ Modal สูงเกินหน้าจอ */
     max-height: 90vh;
     max-height: 90dvh;
 
+    /* เลื่อนเนื้อหาภายใน Modal */
+    overflow-x: hidden;
     overflow-y: auto;
+
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 
@@ -557,36 +571,30 @@ body {
     color: #44352f;
 
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+    /* ป้องกัน scrollbar ทำให้เนื้อหากระโดด */
+    scrollbar-width: thin;
+    scrollbar-color: #d8c5ad transparent;
 }
 
-/* ปุ่มปิด Modal */
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
 .close-button {
     position: sticky;
     top: 0;
     margin-left: auto;
     z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* มือถือจอเล็ก */
-@media (max-width: 480px) {
-    .modal-backdrop {
-        align-items: flex-end;
-        padding: 0;
-    }
-
-    .krathong-modal {
-        width: 100%;
-        max-width: 100%;
-
-        max-height: 90vh;
-        max-height: 90dvh;
-
-        border-radius: 24px 24px 0 0;
-
-        padding: 24px 20px;
-        padding-bottom: calc(24px + env(safe-area-inset-bottom));
-    }
-}
+/* ========================================
+   MODAL PREVIEW
+======================================== */
 
 .preview-card {
     position: relative;
@@ -594,9 +602,12 @@ body {
     min-height: 140px;
     place-items: center;
     overflow: hidden;
+
     margin: -6px 0 24px;
+
     border: 1px solid #d9f0f033;
     border-radius: 16px;
+
     background: linear-gradient(#0b2d4c, #0a1f38);
 }
 
@@ -628,35 +639,45 @@ body {
     animation: float-image 4s ease-in-out infinite;
 }
 
+/* ========================================
+   FLOAT BUTTON
+======================================== */
+
 .float-button:disabled {
     cursor: wait;
-    opacity: .7;
+    opacity: 0.7;
 }
+
+/* ========================================
+   ANIMATIONS
+======================================== */
 
 @keyframes twinkle {
     50% {
-        opacity: .35;
-        transform: scale(.65);
+        opacity: 0.35;
+        transform: scale(0.65);
     }
 }
 
 @keyframes moon-breathe {
     50% {
-        box-shadow: 0 0 34px 9px #fff0b0bb, 0 0 120px 38px #d7b97555;
+        box-shadow:
+            0 0 34px 9px #fff0b0bb,
+            0 0 120px 38px #d7b97555;
     }
 }
 
 @keyframes shimmer {
     50% {
-        opacity: .35;
+        opacity: 0.35;
         transform: translateX(-50%) scaleX(1.3);
     }
 }
 
 @keyframes ripple {
     50% {
-        transform: scaleX(.62);
-        opacity: .25;
+        transform: scaleX(0.62);
+        opacity: 0.25;
     }
 }
 
@@ -686,9 +707,13 @@ body {
 
 @keyframes flame {
     to {
-        transform: rotate(11deg) scale(.86, 1.08);
+        transform: rotate(11deg) scale(0.86, 1.08);
     }
 }
+
+/* ========================================
+   RESPONSIVE : TABLET & MOBILE
+======================================== */
 
 @media (max-width: 600px) {
     .hero {
@@ -706,5 +731,63 @@ body {
 
     .scroll-hint {
         display: none;
+    }
+}
+
+/* ========================================
+   RESPONSIVE : MOBILE MODAL
+======================================== */
+
+@media (max-width: 480px) {
+    .modal-backdrop {
+        align-items: flex-end;
+
+        /* ให้ Modal ชิดขอบล่างของจอ */
+        padding: 0;
+
+        /* ใช้พื้นที่หน้าจออย่างเหมาะสม */
+        height: 100vh;
+        height: 100dvh;
+
+        overflow-y: auto;
+    }
+
+    .krathong-modal {
+        width: 100%;
+        max-width: 100%;
+
+        max-height: 90vh;
+        max-height: 90dvh;
+
+        /* มุมโค้งเฉพาะด้านบน */
+        border-radius: 24px 24px 0 0;
+
+        padding: 24px 20px;
+
+        /* เว้นพื้นที่ด้านล่างสำหรับ iPhone */
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+
+        /* เปิดการเลื่อนภายใน Modal */
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY : REDUCE MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }
