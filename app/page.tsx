@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 
-const stars = [[7,14,2],[13,35,1],[20,8,1],[27,25,2],[34,13,1],[43,31,1],[51,10,2],[59,22,1],[67,7,1],[74,33,2],[82,16,1],[90,28,1],[95,9,2],[17,52,1],[69,48,1]];
+const stars = [[7, 14, 2], [13, 35, 1], [20, 8, 1], [27, 25, 2], [34, 13, 1], [43, 31, 1], [51, 10, 2], [59, 22, 1], [67, 7, 1], [74, 33, 2], [82, 16, 1], [90, 28, 1], [95, 9, 2], [17, 52, 1], [69, 48, 1]];
 const flowers = [
   { id: "golden", name: "ทองอร่าม", value: "#e5a934", filter: "hue-rotate(0deg)" },
   { id: "lotus-pink", name: "ชมพูบัว", value: "#d76d92", filter: "hue-rotate(325deg) saturate(1.15)" },
@@ -30,7 +30,15 @@ export default function Home() {
   const [krathongs, setKrathongs] = useState<Krathong[]>([]);
   const [isFloating, setIsFloating] = useState(false);
   const [firebaseError, setFirebaseError] = useState(false);
+  useEffect(() => {
+    if (!isModalOpen) return;
 
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
   useEffect(() => {
     const riverQuery = query(collection(db, "krathongs"), orderBy("createdAt", "desc"));
     return onSnapshot(riverQuery, (snapshot) => {
@@ -64,6 +72,14 @@ export default function Home() {
       {krathongs.length === 0 && <div className="empty-river-message"><span>✦</span><p>แม่น้ำกำลังรอคำอธิษฐานของคุณ</p></div>}
       {firebaseError && <p className="firebase-notice">ยังเชื่อมต่อแม่น้ำรวมไม่ได้ — ตรวจสอบ Firestore และ rules</p>}
     </section><p className="scroll-hint">เลื่อนลงเพื่อเริ่มลอยกระทง <span>↓</span></p>
-    {isModalOpen && <div className="modal-backdrop" role="presentation" onMouseDown={() => setIsModalOpen(false)}><section className="krathong-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => event.stopPropagation()}><button className="close-button" aria-label="ปิด" onClick={() => setIsModalOpen(false)}><X size={20} /></button><p className="modal-kicker">คืนวันเพ็ญ</p><h2 id="modal-title">สร้างกระทงของคุณ</h2><div className="preview-card"><KrathongVisual flower={flower} className="preview-krathong" /><p>ตัวอย่างกระทงของคุณ</p></div><form onSubmit={floatKrathong}><fieldset><legend>เลือกแบบและสีดอกไม้</legend><div className="color-options">{flowers.map((option) => <button type="button" className={`color-option ${flower === option.id ? "selected" : ""}`} key={option.id} onClick={() => setFlower(option.id)} aria-pressed={flower === option.id}><Image src="/images/krathong-lotus.png" alt="" width={64} height={64} style={{ filter: option.filter }} /><span className="color-name"><i style={{ backgroundColor: option.value }} />{option.name}</span></button>)}</div></fieldset><label htmlFor="wish">คำอวยพร <span>ไม่บังคับ</span></label><textarea id="wish" value={wish} onChange={(event) => setWish(event.target.value)} maxLength={80} placeholder="ขอให้สิ่งดี ๆ ลอยเข้ามาในชีวิต…" /><button className="float-button" type="submit" disabled={isFloating}><Sparkles size={18} />{isFloating ? "กำลังลอย…" : "ลอยกระทง"}</button></form></section></div>}
+    {isModalOpen && <div
+      className="modal-backdrop"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          setIsModalOpen(false);
+        }
+      }}
+    ><section className="krathong-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => event.stopPropagation()}><button className="close-button" aria-label="ปิด" onClick={() => setIsModalOpen(false)}><X size={20} /></button><p className="modal-kicker">คืนวันเพ็ญ</p><h2 id="modal-title">สร้างกระทงของคุณ</h2><div className="preview-card"><KrathongVisual flower={flower} className="preview-krathong" /><p>ตัวอย่างกระทงของคุณ</p></div><form onSubmit={floatKrathong}><fieldset><legend>เลือกแบบและสีดอกไม้</legend><div className="color-options">{flowers.map((option) => <button type="button" className={`color-option ${flower === option.id ? "selected" : ""}`} key={option.id} onClick={() => setFlower(option.id)} aria-pressed={flower === option.id}><Image src="/images/krathong-lotus.png" alt="" width={64} height={64} style={{ filter: option.filter }} /><span className="color-name"><i style={{ backgroundColor: option.value }} />{option.name}</span></button>)}</div></fieldset><label htmlFor="wish">คำอวยพร <span>ไม่บังคับ</span></label><textarea id="wish" value={wish} onChange={(event) => setWish(event.target.value)} maxLength={80} placeholder="ขอให้สิ่งดี ๆ ลอยเข้ามาในชีวิต…" /><button className="float-button" type="submit" disabled={isFloating}><Sparkles size={18} />{isFloating ? "กำลังลอย…" : "ลอยกระทง"}</button></form></section></div>}
   </main>;
 }
