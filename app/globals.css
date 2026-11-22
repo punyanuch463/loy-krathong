@@ -61,6 +61,8 @@ body {
 ======================================== */
 
 .moon {
+    z-index: 1;
+    pointer-events: none;
     position: absolute;
     top: clamp(50px, 9vw, 108px);
     right: clamp(10%, 16vw, 23%);
@@ -106,46 +108,45 @@ body {
 }
 
 /* ========================================
-   DISTANT HILLS
+   FULL BACKGROUND
+   WAT PHRA KAEW + MOON + RIVER
 ======================================== */
 
-.distant-hills {
+.palace-background {
     position: absolute;
-    left: -10%;
-    width: 120%;
-    height: 25%;
-    z-index: -1;
+    z-index: 0;
+    inset: 0;
+
+    background-image:
+        url("/images/wat-phra-kaew-night.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    pointer-events: none;
 }
 
-.hill-back {
-    bottom: 31%;
-    background: #10294a;
-    clip-path: polygon(0 100%,
-            0 74%,
-            12% 56%,
-            23% 72%,
-            41% 31%,
-            55% 62%,
-            72% 39%,
-            84% 65%,
-            100% 35%,
-            100% 100%);
+/* ========================================
+   REMOVE CSS MOON
+   MOON IS ALREADY IN BACKGROUND IMAGE
+======================================== */
+
+.moon {
+    display: none;
 }
 
-.hill-front {
-    bottom: 24%;
-    background: #0c2744;
-    opacity: 0.95;
-    clip-path: polygon(0 100%,
-            0 62%,
-            19% 38%,
-            33% 69%,
-            50% 44%,
-            64% 65%,
-            80% 32%,
-            100% 58%,
-            100% 100%);
+/* ========================================
+   STARS
+======================================== */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
 }
+
 
 /* ========================================
    HERO
@@ -224,106 +225,44 @@ body {
         0 0 20px #f7c45277;
 }
 
+
 /* ========================================
-   RIVER
+   RIVER OVERLAY
+   ใช้แม่น้ำจากภาพพื้นหลัง
 ======================================== */
 
 .river {
     position: absolute;
+    z-index: 2;
+
     right: 0;
     bottom: 0;
     left: 0;
+
     height: 33%;
     min-height: 235px;
+
     overflow: hidden;
-    background: linear-gradient(180deg,
-            #245270dd,
-            #0b3154 48%,
-            #061d3b);
+
+    /* ไม่มีพื้นหลังแม่น้ำซ้ำ */
+    background: transparent;
 }
 
 /* Moon reflection */
-
+/* แสงสะท้อนจากพระจันทร์ */
 .moon-reflection {
-    position: absolute;
-    top: -3%;
-    left: 50%;
-    width: 18%;
-    height: 105%;
-    transform: translateX(-50%);
-    opacity: 0.7;
-    background: linear-gradient(90deg,
-            transparent,
-            #fff6bb44 35%,
-            #fffde999 50%,
-            #fff6bb44 65%,
-            transparent);
-    clip-path: polygon(43% 0,
-            57% 0,
-            65% 10%,
-            35% 17%,
-            67% 24%,
-            33% 31%,
-            62% 39%,
-            39% 47%,
-            66% 55%,
-            32% 63%,
-            57% 73%,
-            37% 84%,
-            55% 100%,
-            45% 100%);
-    animation: shimmer 5s ease-in-out infinite;
+    opacity: 0.3;
 }
 
-/* River glow */
-
+/* ลดแสงเส้นบนผิวน้ำ */
 .river-glow {
-    position: absolute;
-    height: 3px;
-    border-radius: 50%;
-    background: #f8db8670;
-    animation: ripple 4s ease-in-out infinite;
+    opacity: 0.4;
 }
 
-.glow-one {
-    top: 38%;
-    left: 10%;
-    width: 30%;
-}
-
-.glow-two {
-    top: 70%;
-    right: 9%;
-    width: 24%;
-    animation-delay: -2s;
-}
-
-/* Waves */
-
+/* คลื่นบาง ๆ บนภาพแม่น้ำ */
 .wave {
-    position: absolute;
-    right: -10%;
-    left: -10%;
+    border-top: 1px solid #b9e5f322;
     height: 80px;
-    border-top: 2px solid #81b9d42e;
-    border-radius: 50%;
-    animation: drift 9s linear infinite;
-}
-
-.wave-one {
-    top: 10%;
-}
-
-.wave-two {
-    top: 40%;
-    animation-delay: -3s;
-    opacity: 0.7;
-}
-
-.wave-three {
-    top: 74%;
-    animation-delay: -5s;
-    opacity: 0.45;
 }
 
 /* ========================================
@@ -716,63 +655,48 @@ body {
 ======================================== */
 
 @media (max-width: 600px) {
+    .palace-background {
+        background-position: center center;
+    }
+
+    .river {
+        height: 31%;
+        min-height: 200px;
+    }
+}
+
+/* ========================================
+   RESPONSIVE : MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .palace-background {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background-size: cover;
+
+        /* เลื่อนจุดโฟกัสไปทางขวาและด้านบน */
+        background-position: 45% 35%;
+        background-repeat: no-repeat;
+    }
+
     .hero {
         padding-top: 155px;
         padding-bottom: 260px;
     }
 
-    .moon {
-        right: 8%;
-    }
-
     .river {
         height: 31%;
+        min-height: 200px;
     }
 
     .scroll-hint {
         display: none;
-    }
-}
-
-/* ========================================
-   RESPONSIVE : MOBILE MODAL
-======================================== */
-
-@media (max-width: 480px) {
-    .modal-backdrop {
-        align-items: flex-end;
-
-        /* ให้ Modal ชิดขอบล่างของจอ */
-        padding: 0;
-
-        /* ใช้พื้นที่หน้าจออย่างเหมาะสม */
-        height: 100vh;
-        height: 100dvh;
-
-        overflow-y: auto;
-    }
-
-    .krathong-modal {
-        width: 100%;
-        max-width: 100%;
-
-        max-height: 90vh;
-        max-height: 90dvh;
-
-        /* มุมโค้งเฉพาะด้านบน */
-        border-radius: 24px 24px 0 0;
-
-        padding: 24px 20px;
-
-        /* เว้นพื้นที่ด้านล่างสำหรับ iPhone */
-        padding-bottom: calc(24px + env(safe-area-inset-bottom));
-
-        /* เปิดการเลื่อนภายใน Modal */
-        overflow-y: auto;
-        overflow-x: hidden;
-
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -1061,4 +985,775 @@ body {
     font-weight: 700;
     line-height: 1.5;
     color: #44352f;
+}
+
+/* ======================================
+   KRATHONG MOVEMENT + DRAG
+====================================== */
+
+.river {
+    position: absolute;
+    overflow: hidden;
+}
+
+/* ตำแหน่งหลักของกระทง */
+.krathong-position {
+    position: absolute;
+    width: 88px;
+    height: 88px;
+
+    transform: translate(-50%, -50%);
+    animation: none !important;
+
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+
+    transition: left 0.12s linear, top 0.12s linear;
+}
+
+/* ขณะลาก */
+.krathong-position.is-dragging {
+    cursor: grabbing;
+    transition: none;
+}
+
+/* ชั้นเคลื่อนไหวด้านใน */
+.krathong-drift {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* รูปกระทง */
+.krathong-position .generated-krathong {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    pointer-events: none;
+    animation: none !important;
+    transform: none;
+    -webkit-user-drag: none;
+}
+
+/* ระยะใกล้ */
+.krathong-drift.depth-near {
+    animation: krathong-near 5s ease-in-out infinite;
+}
+
+/* ระยะกลาง */
+.krathong-drift.depth-middle {
+    animation: krathong-middle 7s ease-in-out infinite;
+}
+
+/* ระยะไกล */
+.krathong-drift.depth-far {
+    animation: krathong-far 9s ease-in-out infinite;
+}
+
+/* หยุดลอยขณะลาก */
+.krathong-position.is-dragging .krathong-drift {
+    animation-play-state: paused;
+}
+
+/* ใกล้: เคลื่อนที่ชัดกว่าและมีขนาดใหญ่ */
+@keyframes krathong-near {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1.05) rotate(-2deg);
+    }
+
+    25% {
+        transform: translate(12px, -5px) scale(1.05) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(20px, 3px) scale(1.05) rotate(2deg);
+    }
+
+    75% {
+        transform: translate(7px, 6px) scale(1.05) rotate(-1deg);
+    }
+}
+
+/* กลาง */
+@keyframes krathong-middle {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(0.88) rotate(1deg);
+    }
+
+    25% {
+        transform: translate(-10px, 4px) scale(0.88) rotate(-1deg);
+    }
+
+    50% {
+        transform: translate(-18px, -4px) scale(0.88) rotate(-2deg);
+    }
+
+    75% {
+        transform: translate(-5px, -6px) scale(0.88) rotate(1deg);
+    }
+}
+
+/* ไกล */
+@keyframes krathong-far {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(0.72) rotate(-1deg);
+    }
+
+    25% {
+        transform: translate(7px, -3px) scale(0.72) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(13px, 3px) scale(0.72) rotate(1deg);
+    }
+
+    75% {
+        transform: translate(4px, 5px) scale(0.72) rotate(-1deg);
+    }
+}
+
+/* มือถือ */
+@media (max-width: 600px) {
+    .krathong-position {
+        width: 68px;
+        height: 68px;
+    }
+}
+
+/* =========================================
+   KRATHONG CUSTOMIZATION - LAYER SYSTEM
+========================================= */
+
+/* ภาชนะรวมภาพทุกชั้น */
+.krathong-art {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+}
+
+/* ภาพแต่ละชั้น */
+.krathong-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* ฐานกระทง */
+.base-layer {
+    z-index: 1;
+}
+
+/* ตำแหน่งดอกไม้ */
+.flower-layer {
+    position: absolute;
+    width: 19%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+/* ธูป - ขยับไปด้านหลังเทียน */
+.incense-layer {
+    position: absolute;
+    left: 40%;
+    top: 27%;
+    width: 24%;
+    height: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    pointer-events: none;
+}
+
+.incense-layer img {
+    object-fit: contain;
+}
+
+/* เทียน */
+.candle-layer {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    width: 24%;
+    height: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 12;
+    pointer-events: none;
+}
+
+.candle-layer img {
+    object-fit: contain;
+}
+
+/* =========================================
+   KRATHONG IN RIVER
+========================================= */
+
+.krathong-position {
+    position: absolute;
+    width: 88px;
+    height: 88px;
+    transform: translate(-50%, -50%);
+    animation: none !important;
+
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+
+    transition: left 0.12s linear, top 0.12s linear;
+    filter: drop-shadow(0 8px 6px #00132699);
+}
+
+.krathong-position.is-dragging {
+    cursor: grabbing;
+    transition: none;
+}
+
+.krathong-drift {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.krathong-drift.depth-near {
+    animation: krathong-near 5s ease-in-out infinite;
+}
+
+.krathong-drift.depth-middle {
+    animation: krathong-middle 7s ease-in-out infinite;
+}
+
+.krathong-drift.depth-far {
+    animation: krathong-far 9s ease-in-out infinite;
+}
+
+.krathong-position.is-dragging .krathong-drift {
+    animation-play-state: paused;
+}
+
+/* ลอยระยะใกล้ */
+@keyframes krathong-near {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1.05) rotate(-2deg);
+    }
+
+    50% {
+        transform: translate(15px, -5px) scale(1.05) rotate(2deg);
+    }
+}
+
+/* ลอยระยะกลาง */
+@keyframes krathong-middle {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(.88) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-12px, -4px) scale(.88) rotate(-2deg);
+    }
+}
+
+/* ลอยระยะไกล */
+@keyframes krathong-far {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(.72) rotate(-1deg);
+    }
+
+    50% {
+        transform: translate(9px, 3px) scale(.72) rotate(1deg);
+    }
+}
+
+/* =========================================
+   LIVE PREVIEW
+========================================= */
+
+.customize-modal .custom-preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 190px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    border: 1px solid #d9c39b;
+    border-radius: 18px;
+    background:
+        radial-gradient(ellipse at center, #31516b 0%, #0b2944 75%);
+}
+
+.custom-preview .krathong-art {
+    width: 155px;
+    height: 145px;
+    flex-shrink: 0;
+    animation: preview-float 4s ease-in-out infinite;
+}
+
+.custom-preview p {
+    position: relative;
+    z-index: 20;
+    margin: -2px 0 12px;
+    color: #f8df9c;
+    font-size: 12px;
+}
+
+@keyframes preview-float {
+    50% {
+        transform: translateY(5px) rotate(2deg);
+    }
+}
+
+/* =========================================
+   CUSTOMIZATION OPTIONS
+========================================= */
+
+.customize-modal fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+}
+
+.customize-modal legend {
+    margin-bottom: 10px;
+    color: #44352f;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.custom-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.custom-option {
+    min-height: 40px;
+    padding: 9px 13px;
+    border: 1px solid #e5d8cb;
+    border-radius: 12px;
+    background: #fff;
+    color: #554438;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.custom-option:hover {
+    border-color: #d6a442;
+}
+
+.custom-option.selected {
+    border-color: #d6a442;
+    background: #fff3d8;
+    color: #7a5018;
+    box-shadow: 0 0 0 2px #d6a44222;
+}
+
+/* สีดอกไม้ */
+.customize-modal .color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.customize-modal .color-option {
+    flex-direction: row;
+    min-width: 75px;
+    padding: 9px 11px;
+}
+
+.color-dot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    border: 1px solid #00000018;
+    border-radius: 50%;
+}
+
+/* จำนวนดอกไม้ */
+.count-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 190px;
+    padding: 7px;
+    border: 1px solid #e5d8cb;
+    border-radius: 14px;
+    background: white;
+}
+
+.count-control strong {
+    color: #44352f;
+    font-size: 15px;
+}
+
+.count-control button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 10px;
+    background: #f8eddc;
+    color: #76522d;
+    cursor: pointer;
+}
+
+.count-control button:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   MODAL SCROLL
+========================================= */
+
+.customize-modal {
+    max-height: 90vh;
+    max-height: 90dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.customize-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.customize-modal textarea {
+    width: 100%;
+    min-height: 85px;
+    padding: 12px;
+    border: 1px solid #e5d8cb;
+    border-radius: 12px;
+    background: #fff;
+    color: #44352f;
+    font: inherit;
+    resize: vertical;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .krathong-position {
+        width: 68px;
+        height: 68px;
+    }
+
+    .customize-modal {
+        padding: 25px 18px;
+    }
+
+    .custom-preview {
+        min-height: 170px;
+    }
+
+    .custom-preview .krathong-art {
+        width: 140px;
+        height: 130px;
+    }
+
+    .custom-options {
+        gap: 7px;
+    }
+
+    .custom-option {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   MODAL - CONSISTENT TYPOGRAPHY
+========================================= */
+
+/* ขนาดตัวอักษรมาตรฐานใน Modal */
+.customize-modal {
+    font-size: 14px;
+}
+
+/* หัวข้อแต่ละข้อ */
+.customize-modal legend {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* ปุ่มตัวเลือกทั้งหมด */
+.customize-modal .custom-option {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* ตัวเลือกสี */
+.customize-modal .color-option {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* ชื่อสี */
+.customize-modal .color-option span {
+    font-size: 14px;
+}
+
+/* จำนวนดอกไม้ */
+.customize-modal .count-control strong {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* ปุ่มเพิ่ม-ลดจำนวน */
+.customize-modal .count-control button {
+    font-size: 14px;
+}
+
+/* คำอธิษฐาน */
+.customize-modal label {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ข้อความไม่บังคับ */
+.customize-modal label span {
+    font-size: 12px;
+}
+
+/* ช่องกรอกคำอธิษฐาน */
+.customize-modal textarea {
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ปุ่มลอยกระทง */
+.customize-modal .float-button {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* หัวข้อหลักของ Modal */
+.customize-modal .modal-title {
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+/* ข้อความตัวอย่างกระทง */
+.customize-modal .custom-preview p {
+    font-size: 12px;
+}
+
+/* มือถือ */
+@media (max-width: 600px) {
+
+    .customize-modal legend,
+    .customize-modal .custom-option,
+    .customize-modal .color-option,
+    .customize-modal .color-option span,
+    .customize-modal .count-control strong,
+    .customize-modal label,
+    .customize-modal textarea {
+        font-size: 14px;
+    }
+}
+
+/* ==========================================
+   FLOWER DRAG & DROP
+========================================== */
+
+.custom-preview .krathong-art {
+    position: relative;
+    touch-action: none;
+    user-select: none;
+}
+
+.custom-preview .flower-layer {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: none;
+}
+
+.custom-preview .flower-draggable {
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.custom-preview .flower-draggable:active {
+    cursor: grabbing;
+}
+
+/* ==========================================
+   DRAG HINT
+========================================== */
+
+.drag-flower-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #c9a66b;
+    text-align: center;
+}
+
+/* ==========================================
+   RESET FLOWER BUTTON
+========================================== */
+
+.reset-flowers-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 10px;
+    padding: 8px 15px;
+
+    border: 1px solid rgba(201, 166, 107, 0.4);
+    border-radius: 20px;
+
+    background: rgba(201, 166, 107, 0.08);
+    color: #c9a66b;
+
+    font-size: 12px;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.reset-flowers-button:hover {
+    background: rgba(201, 166, 107, 0.18);
+    border-color: #c9a66b;
+}
+
+.reset-flowers-button:active {
+    transform: scale(0.97);
+}
+
+/* ==========================================
+   FLOWER DRAG RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+    .drag-flower-hint {
+        font-size: 11px;
+    }
+
+    .reset-flowers-button {
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+}
+
+/* FLOWER DRAG */
+
+.custom-preview .krathong-art {
+    position: relative;
+    touch-action: none;
+    user-select: none;
+}
+
+.custom-preview .flower-layer {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.custom-preview .flower-draggable {
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.custom-preview .flower-draggable:active {
+    cursor: grabbing;
+}
+
+/* DRAG HINT */
+
+.drag-flower-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #c9a66b;
+    text-align: center;
+}
+
+/* RESET BUTTON */
+
+.reset-flowers-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: 1px solid rgba(201, 166, 107, 0.4);
+    border-radius: 20px;
+    background: rgba(201, 166, 107, 0.08);
+    color: #c9a66b;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.reset-flowers-button:hover {
+    background: rgba(201, 166, 107, 0.18);
+    border-color: #c9a66b;
+}
+
+.reset-flowers-button:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 600px) {
+    .drag-flower-hint {
+        font-size: 11px;
+    }
+
+    .reset-flowers-button {
+        font-size: 11px;
+    }
 }

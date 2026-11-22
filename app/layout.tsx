@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ลอยกระทงใต้แสงจันทร์",
+  title: "วันเพ็ญเดือน 12 น้ำตะนองเต็มตะติ่ง",
   description: "สร้างกระทงและลอยคำอธิษฐานไปกับสายน้ำ",
 };
 
